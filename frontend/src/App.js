@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import '@/App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -11,6 +11,12 @@ const Home = () => {
       role: 'Diretor Criativo',
       description: 'Cuida do conteúdo gráfico dentro e fora das redes.',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjh8MHwxfHNlYXJjaHwzfHxjcmVhdGl2ZSUyMGRpcmVjdG9yJTIwaGVhZHNob3R8ZW58MHx8fHwxNzg0MDY4MzY2fDA&ixlib=rb-4.1.0&q=85'
+    },
+    {
+      name: 'Sabrina',
+      role: 'Desenvolvedora de Software',
+      description: 'Transforma ideias em soluções tecnológicas inovadoras.',
+      image: 'https://customer-assets.emergentagent.com/job_page-transfer-demo/artifacts/9g31duf5_WhatsApp%20Image%202026-07-14%20at%2015.37.37.jpeg'
     },
     {
       name: 'Igor',
@@ -339,7 +345,7 @@ const Home = () => {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>© 2024 Duma. Comunidade colaborativa de marketing.</p>
+            <p>© 2026 Duma. Comunidade colaborativa de marketing.</p>
           </div>
         </div>
       </footer>
