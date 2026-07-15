@@ -1,9 +1,45 @@
 import { useState } from 'react';
 import '@/App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import axios from 'axios';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
 
 const Home = () => {
   const [activeTeamMember, setActiveTeamMember] = useState(0);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
+  const [formStatus, setFormStatus] = useState({ loading: false, success: false, error: '' });
+
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setFormStatus({ loading: true, success: false, error: '' });
+
+    try {
+      await axios.post(`${API}/contact`, formData);
+      setFormStatus({ loading: false, success: true, error: '' });
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => {
+        setFormStatus({ loading: false, success: false, error: '' });
+      }, 5000);
+    } catch (error) {
+      const errorMsg = error.response?.data?.detail || 'Erro ao enviar mensagem. Tente novamente.';
+      setFormStatus({ loading: false, success: false, error: errorMsg });
+    }
+  };
 
   const teamMembers = [
     {
@@ -86,7 +122,6 @@ const Home = () => {
 
   const whatsappLink = 'https://wa.me/message/6BVRXSLOXBSWK1';
   const instagramLink = 'https://instagram.com/dumacriatividade';
-  const tiktokLink = '#'; // Placeholder
 
   return (
     <div className="landing-page">
@@ -309,6 +344,129 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Contact Form Section */}
+      <section className="contact-section" data-testid="contact-section" id="contato">
+        <div className="container">
+          <div className="contact-header">
+            <div className="badge" data-testid="contact-badge">
+              <span className="badge-dot"></span>
+              Vamos conversar
+            </div>
+            <h2 className="section-title" data-testid="contact-title">
+              Pronto para <span className="highlight">transformar</span> sua marca?
+            </h2>
+            <p className="contact-subtitle">
+              Preencha o formulário abaixo e nossa equipe entrará em contato com você em breve.
+            </p>
+          </div>
+
+          <form className="contact-form" onSubmit={handleFormSubmit} data-testid="contact-form">
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="name">Nome completo *</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleFormChange}
+                  required
+                  placeholder="Seu nome"
+                  data-testid="contact-input-name"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">E-mail *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleFormChange}
+                  required
+                  placeholder="seu@email.com"
+                  data-testid="contact-input-email"
+                />
+              </div>
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="phone">Telefone / WhatsApp</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleFormChange}
+                  placeholder="(11) 99999-9999"
+                  data-testid="contact-input-phone"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="subject">Assunto</label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleFormChange}
+                  placeholder="Sobre o que quer conversar?"
+                  data-testid="contact-input-subject"
+                />
+              </div>
+            </div>
+
+            <div className="form-group full-width">
+              <label htmlFor="message">Mensagem *</label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleFormChange}
+                required
+                placeholder="Conta pra gente sobre seu projeto..."
+                rows="5"
+                data-testid="contact-input-message"
+              />
+            </div>
+
+            {formStatus.success && (
+              <div className="form-message success" data-testid="form-success-message">
+                ✓ Mensagem enviada com sucesso! Entraremos em contato em breve.
+              </div>
+            )}
+
+            {formStatus.error && (
+              <div className="form-message error" data-testid="form-error-message">
+                ✗ {formStatus.error}
+              </div>
+            )}
+
+            <button
+              type="submit"
+              className="cta-button submit-button"
+              disabled={formStatus.loading}
+              data-testid="contact-submit-button"
+            >
+              {formStatus.loading ? (
+                <>
+                  <span className="button-icon">⏳</span>
+                  Enviando...
+                </>
+              ) : (
+                <>
+                  <span className="button-icon">✉️</span>
+                  Enviar mensagem
+                  <span className="button-arrow">→</span>
+                </>
+              )}
+            </button>
+          </form>
+        </div>
+      </section>
+
+
       {/* Footer */}
       <footer className="footer" data-testid="footer">
         <div className="container">
@@ -326,18 +484,6 @@ const Home = () => {
                   <path d="M12 2C14.717 2 15.056 2.01 16.122 2.06C17.187 2.11 17.912 2.277 18.55 2.525C19.21 2.779 19.766 3.123 20.322 3.678C20.8305 4.1779 21.224 4.78259 21.475 5.45C21.722 6.087 21.89 6.813 21.94 7.878C21.987 8.944 22 9.283 22 12C22 14.717 21.99 15.056 21.94 16.122C21.89 17.187 21.722 17.912 21.475 18.55C21.2247 19.2178 20.8311 19.8226 20.322 20.322C19.822 20.8303 19.2173 21.2238 18.55 21.475C17.913 21.722 17.187 21.89 16.122 21.94C15.056 21.987 14.717 22 12 22C9.283 22 8.944 21.99 7.878 21.94C6.813 21.89 6.088 21.722 5.45 21.475C4.78233 21.2245 4.17753 20.8309 3.678 20.322C3.16941 19.8222 2.77593 19.2175 2.525 18.55C2.277 17.913 2.11 17.187 2.06 16.122C2.013 15.056 2 14.717 2 12C2 9.283 2.01 8.944 2.06 7.878C2.11 6.812 2.277 6.088 2.525 5.45C2.77524 4.78218 3.1688 4.17732 3.678 3.678C4.17767 3.16923 4.78243 2.77573 5.45 2.525C6.088 2.277 6.812 2.11 7.878 2.06C8.944 2.013 9.283 2 12 2ZM12 7C10.6739 7 9.40215 7.52678 8.46447 8.46447C7.52678 9.40215 7 10.6739 7 12C7 13.3261 7.52678 14.5979 8.46447 15.5355C9.40215 16.4732 10.6739 17 12 17C13.3261 17 14.5979 16.4732 15.5355 15.5355C16.4732 14.5979 17 13.3261 17 12C17 10.6739 16.4732 9.40215 15.5355 8.46447C14.5979 7.52678 13.3261 7 12 7ZM18.5 6.75C18.5 6.41848 18.3683 6.10054 18.1339 5.86612C17.8995 5.6317 17.5815 5.5 17.25 5.5C16.9185 5.5 16.6005 5.6317 16.3661 5.86612C16.1317 6.10054 16 6.41848 16 6.75C16 7.08152 16.1317 7.39946 16.3661 7.63388C16.6005 7.8683 16.9185 8 17.25 8C17.5815 8 17.8995 7.8683 18.1339 7.63388C18.3683 7.39946 18.5 7.08152 18.5 6.75ZM12 9C12.7956 9 13.5587 9.31607 14.1213 9.87868C14.6839 10.4413 15 11.2044 15 12C15 12.7956 14.6839 13.5587 14.1213 14.1213C13.5587 14.6839 12.7956 15 12 15C11.2044 15 10.4413 14.6839 9.87868 14.1213C9.31607 13.5587 9 12.7956 9 12C9 11.2044 9.31607 10.4413 9.87868 9.87868C10.4413 9.31607 11.2044 9 12 9Z" fill="currentColor"/>
                 </svg>
                 Instagram
-              </a>
-              <a
-                href={tiktokLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-                data-testid="tiktok-link"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" fill="currentColor"/>
-                </svg>
-                TikTok
               </a>
               <a
                 href={whatsappLink}

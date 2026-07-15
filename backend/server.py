@@ -1,12 +1,12 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 from pathlib import Path
-from pydantic import BaseModel, Field, ConfigDict
-from typing import List
+from pydantic import BaseModel, Field, ConfigDict, EmailStr
+from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
 
@@ -37,6 +37,26 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
+
+class ContactMessage(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    email: str
+    phone: Optional[str] = None
+    subject: Optional[str] = None
+    message: str
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class ContactMessageCreate(BaseModel):
+    name: str = Field(..., min_length=2, max_length=100)
+    email: str = Field(..., min_length=5, max_length=100)
+    phone: Optional[str] = Field(None, max_length=30)
+    subject: Optional[str] = Field(None, max_length=200)
+    message: str = Field(..., min_length=10, max_length=2000)
+
+
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
@@ -65,6 +85,38 @@ async def get_status_checks():
             check['timestamp'] = datetime.fromisoformat(check['timestamp'])
     
     return status_checks
+
+
+@api_router.post("/contact", response_model=ContactMessage)
+async def create_contact_message(input: ContactMessageCreate):
+    """Recebe mensagens do formulário de contato da landing page da Duma"""
+    try:
+        contact_obj = ContactMessage(**input.model_dump())
+        
+        # Convert to dict and serialize datetime to ISO string for MongoDB
+        doc = contact_obj.model_dump()
+        doc['timestamp'] = doc['timestamp'].isoformat()
+        
+        result = await db.contact_messages.insert_one(doc)
+        logger.info(f"Nova mensagem de contato recebida de {input.name} ({input.email})")
+        
+        return contact_obj
+    except Exception as e:
+        logger.error(f"Erro ao salvar mensagem de contato: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Erro ao processar mensagem: {str(e)}")
+
+
+@api_router.get("/contact", response_model=List[ContactMessage])
+async def get_contact_messages():
+    """Lista todas as mensagens de contato recebidas (para uso interno)"""
+    messages = await db.contact_messages.find({}, {"_id": 0}).sort("timestamp", -1).to_list(1000)
+    
+    for msg in messages:
+        if isinstance(msg.get('timestamp'), str):
+            msg['timestamp'] = datetime.fromisoformat(msg['timestamp'])
+    
+    return messages
+
 
 # Include the router in the main app
 app.include_router(api_router)
