@@ -312,12 +312,32 @@ const Home = () => {
             </div>
             
             <div className="history-image-container">
-              <img
-                src="https://images.unsplash.com/photo-1557804506-669a67965ba0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzZ8MHwxfHNlYXJjaHwyfHxtYXJrZXRpbmclMjB0ZWFtJTIwY29sbGFib3JhdGlvbnxlbnwwfHx8fDE3ODQwNjgzNjZ8MA&ixlib=rb-4.1.0&q=85"
-                alt="Equipe Duma trabalhando"
-                className="history-image"
-                data-testid="history-image"
-              />
+              <div className="team-collage" data-testid="team-collage">
+                <div className="collage-item collage-1">
+                  <img src="https://customer-assets-jt897jd0.emergentagent.net/job_page-transfer-demo/artifacts/ti7mumyf_imagem_2026-07-14_230400710.png" alt="Jeterson Santos" />
+                </div>
+                <div className="collage-item collage-2">
+                  <img src="https://customer-assets-jt897jd0.emergentagent.net/job_page-transfer-demo/artifacts/zliltdoe_file_000000001920720e9b63a9de400a392d.png" alt="Robson Dezani" />
+                </div>
+                <div className="collage-item collage-3">
+                  <img src="https://customer-assets.emergentagent.com/job_page-transfer-demo/artifacts/9g31duf5_WhatsApp%20Image%202026-07-14%20at%2015.37.37.jpeg" alt="Sabrina Ribeiro" />
+                </div>
+                <div className="collage-item collage-4">
+                  <img src="https://customer-assets-jt897jd0.emergentagent.net/job_page-transfer-demo/artifacts/t329jinf_file_000000003454720ea4b874bc78bd8e3d.png" alt="Igor Richard" />
+                </div>
+                <div className="collage-item collage-5">
+                  <img src="https://customer-assets-jt897jd0.emergentagent.net/job_page-transfer-demo/artifacts/0ir7yzjh_file_00000000a06c71f5b87a6dc954995a6e.png" alt="Estela Freire" />
+                </div>
+                <div className="collage-item collage-6">
+                  <img src="https://customer-assets-jt897jd0.emergentagent.net/job_page-transfer-demo/artifacts/h1l8jvec_imagem_2026-07-14_152905982.png" alt="Bruno Henrique" />
+                </div>
+                <div className="collage-item collage-7">
+                  <img src="https://customer-assets-jt897jd0.emergentagent.net/job_page-transfer-demo/artifacts/b351ug65_file_000000004010720ea54ed686f2d44862.png" alt="Guilherme Giusti" />
+                </div>
+                <div className="collage-item collage-8">
+                  <img src="https://customer-assets-jt897jd0.emergentagent.net/job_page-transfer-demo/artifacts/dwpev5rl_file_000000008a94720e833ad38f7b5e1ff4.png" alt="Gabriel Renato" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
