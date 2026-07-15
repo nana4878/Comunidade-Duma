@@ -7,6 +7,13 @@ const Home = () => {
 
   const teamMembers = [
     {
+      name: 'Jeterson',
+      role: 'Fundador e Diretor Operacional',
+      fullName: 'Jeterson Santos',
+      description: 'Fundador da Duma, lidera a operação com visão estratégica e propósito.',
+      image: 'https://customer-assets-jt897jd0.emergentagent.net/job_page-transfer-demo/artifacts/ti7mumyf_imagem_2026-07-14_230400710.png'
+    },
+    {
       name: 'Robson',
       role: 'Diretor Criativo',
       fullName: 'Robson Dezani',
@@ -36,10 +43,10 @@ const Home = () => {
     },
     {
       name: 'Bruno',
-      role: 'Social Media',
-      fullName: 'Bruno',
-      description: 'Gerencia e otimiza presença nas redes sociais.',
-      image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA4Mzl8MHwxfHNlYXJjaHwzfHxidXNpbmVzcyUyMGhlYWRzaG90fGVufDB8fHx8MTc4NDA2ODM2Nnww&ixlib=rb-4.1.0&q=85'
+      role: 'Diretor de Tecnologia',
+      fullName: 'Bruno Henrique',
+      description: 'Lidera o desenvolvimento tecnológico com inovação.',
+      image: 'https://customer-assets-jt897jd0.emergentagent.net/job_page-transfer-demo/artifacts/h1l8jvec_imagem_2026-07-14_152905982.png'
     },
     {
       name: 'Guilherme',
@@ -54,13 +61,6 @@ const Home = () => {
       fullName: 'Gabriel Renato',
       description: 'Lidera a criação editorial com visão estratégica.',
       image: 'https://customer-assets-jt897jd0.emergentagent.net/job_page-transfer-demo/artifacts/dwpev5rl_file_000000008a94720e833ad38f7b5e1ff4.png'
-    },
-    {
-      name: 'Jeterson',
-      role: 'Copywriter',
-      fullName: 'Jeterson',
-      description: 'Cria textos persuasivos que convertem.',
-      image: 'https://images.pexels.com/photos/4797690/pexels-photo-4797690.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
     }
   ];
 
@@ -84,8 +84,8 @@ const Home = () => {
   // Duplicate for seamless loop
   const duplicatedProfessionals = [...professionals, ...professionals];
 
-  const whatsappLink = 'https://wa.me/5511999999999'; // Placeholder - usuário vai atualizar
-  const instagramLink = '#'; // Placeholder
+  const whatsappLink = 'https://wa.me/message/6BVRXSLOXBSWK1';
+  const instagramLink = 'https://instagram.com/dumacriatividade';
   const tiktokLink = '#'; // Placeholder
 
   return (
