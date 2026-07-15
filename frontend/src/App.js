@@ -9,48 +9,56 @@ const Home = () => {
     {
       name: 'Robson',
       role: 'Diretor Criativo',
+      fullName: 'Robson Dezani',
       description: 'Cuida do conteúdo gráfico dentro e fora das redes.',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjh8MHwxfHNlYXJjaHwzfHxjcmVhdGl2ZSUyMGRpcmVjdG9yJTIwaGVhZHNob3R8ZW58MHx8fHwxNzg0MDY4MzY2fDA&ixlib=rb-4.1.0&q=85'
+      image: 'https://customer-assets-jt897jd0.emergentagent.net/job_page-transfer-demo/artifacts/zliltdoe_file_000000001920720e9b63a9de400a392d.png'
     },
     {
       name: 'Sabrina',
       role: 'Desenvolvedora de Software',
+      fullName: 'Sabrina Ribeiro',
       description: 'Transforma ideias em soluções tecnológicas inovadoras.',
       image: 'https://customer-assets.emergentagent.com/job_page-transfer-demo/artifacts/9g31duf5_WhatsApp%20Image%202026-07-14%20at%2015.37.37.jpeg'
     },
     {
       name: 'Igor',
-      role: 'Estrategista de Conteúdo',
-      description: 'Desenvolve estratégias criativas para engajamento.',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjh8MHwxfHNlYXJjaHwyfHxjcmVhdGl2ZSUyMGRpcmVjdG9yJTIwaGVhZHNob3R8ZW58MHx8fHwxNzg0MDY4MzY2fDA&ixlib=rb-4.1.0&q=85'
+      role: 'Diretor de Audiovisual',
+      fullName: 'Igor Richard',
+      description: 'Comanda a produção audiovisual com criatividade e técnica.',
+      image: 'https://customer-assets-jt897jd0.emergentagent.net/job_page-transfer-demo/artifacts/t329jinf_file_000000003454720ea4b874bc78bd8e3d.png'
     },
     {
       name: 'Estela',
-      role: 'Designer Senior',
-      description: 'Especialista em identidade visual e branding.',
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjh8MHwxfHNlYXJjaHw0fHxjcmVhdGl2ZSUyMGRpcmVjdG9yJTIwaGVhZHNob3R8ZW58MHx8fHwxNzg0MDY4MzY2fDA&ixlib=rb-4.1.0&q=85'
+      role: 'Diretora de Social Media',
+      fullName: 'Estela Freire',
+      description: 'Estrategista de conteúdo que constrói presença digital autêntica.',
+      image: 'https://customer-assets-jt897jd0.emergentagent.net/job_page-transfer-demo/artifacts/0ir7yzjh_file_00000000a06c71f5b87a6dc954995a6e.png'
     },
     {
       name: 'Bruno',
       role: 'Social Media',
+      fullName: 'Bruno',
       description: 'Gerencia e otimiza presença nas redes sociais.',
       image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA4Mzl8MHwxfHNlYXJjaHwzfHxidXNpbmVzcyUyMGhlYWRzaG90fGVufDB8fHx8MTc4NDA2ODM2Nnww&ixlib=rb-4.1.0&q=85'
     },
     {
       name: 'Guilherme',
-      role: 'Videomaker',
-      description: 'Produz conteúdo audiovisual de alta qualidade.',
-      image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA4Mzl8MHwxfHNlYXJjaHwyfHxidXNpbmVzcyUyMGhlYWRzaG90fGVufDB8fHx8MTc4NDA2ODM2Nnww&ixlib=rb-4.1.0&q=85'
+      role: 'Diretor de Projetos',
+      fullName: 'Guilherme Giusti',
+      description: 'Coordena projetos garantindo entregas de excelência.',
+      image: 'https://customer-assets-jt897jd0.emergentagent.net/job_page-transfer-demo/artifacts/b351ug65_file_000000004010720ea54ed686f2d44862.png'
     },
     {
       name: 'Gabriel',
-      role: 'Especialista em Tráfego',
-      description: 'Otimiza campanhas para máximo resultado.',
-      image: 'https://images.unsplash.com/photo-1627161683077-e34782c24d81?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA4Mzl8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGhlYWRzaG90fGVufDB8fHx8MTc4NDA2ODM2Nnww&ixlib=rb-4.1.0&q=85'
+      role: 'Diretor Editorial',
+      fullName: 'Gabriel Renato',
+      description: 'Lidera a criação editorial com visão estratégica.',
+      image: 'https://customer-assets-jt897jd0.emergentagent.net/job_page-transfer-demo/artifacts/dwpev5rl_file_000000008a94720e833ad38f7b5e1ff4.png'
     },
     {
       name: 'Jeterson',
       role: 'Copywriter',
+      fullName: 'Jeterson',
       description: 'Cria textos persuasivos que convertem.',
       image: 'https://images.pexels.com/photos/4797690/pexels-photo-4797690.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
     }
@@ -168,7 +176,8 @@ const Home = () => {
             
             <div className="team-info">
               <div className="team-number">0{activeTeamMember + 1}</div>
-              <h3 className="team-role" data-testid="team-member-role">{teamMembers[activeTeamMember].role}</h3>
+              <h3 className="team-name" data-testid="team-member-name">{teamMembers[activeTeamMember].fullName}</h3>
+              <p className="team-role" data-testid="team-member-role">{teamMembers[activeTeamMember].role}</p>
               <p className="team-description" data-testid="team-member-description">{teamMembers[activeTeamMember].description}</p>
             </div>
           </div>

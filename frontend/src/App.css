@@ -269,10 +269,18 @@
   margin-bottom: 20px;
 }
 
+.team-name {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #ffffff;
+}
+
 .team-role {
-  font-size: 32px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 500;
   margin-bottom: 16px;
+  color: #FF6B35;
 }
 
 .team-description {
