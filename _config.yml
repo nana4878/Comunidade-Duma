@@ -1,0 +1,20 @@
+theme: jekyll-theme-primer
+
+plugins:
+  - jekyll-github-metadata
+  - jekyll-seo-tag
+
+# GitHub Pages Settings
+title: Comunidade Duma
+description: Community project
+url: https://nana4878.github.io/Comunidade-Duma
+
+# Jekyll Configuration
+markdown: kramdown
+highlighter: rouge
+
+# Build settings
+exclude:
+  - node_modules
+  - .github
+  - README.md
